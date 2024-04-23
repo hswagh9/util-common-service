@@ -215,6 +215,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-			<finalName>Util-Common-Service-Docker-Image.jar</finalName>
+			<finalName>util-common-service-docker-image</finalName>
 	</build>
 </project>

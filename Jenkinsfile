@@ -27,14 +27,24 @@ pipeline {
                 bat "mvn test"
             }
         }
-        
-        // Uncomment and correct the syntax below
-//        stage('Build Docker Image') {
-//            steps {
-//                script {
-//                    sh 'docker build -t book-devops-automation .'
-//                }
-//            }
-//        }
+        stage('Build docker image'){
+            steps{
+                script{
+                    bat 'docker build -t hswagh9/util-common-service-docker-image .'
+                }
+            }
+        }
+        stage('Push image to Hub'){
+		    steps{
+		        script{
+		            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+		                bat "docker login -u hswagh9 -p ${dockerhubpwd}"
+		                bat 'docker push hswagh9/util-common-service-docker-image'
+		            }
+				}
+		    }
+		}
+
     }
 }
+
