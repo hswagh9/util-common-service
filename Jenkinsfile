@@ -27,6 +27,7 @@ pipeline {
                 bat "mvn test"
             }
         }
+        
         stage('Build Docker Image'){
             steps{
                 script{
@@ -34,6 +35,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Push Docker Image to DockerHub'){
 		    steps{
 		        script{
