@@ -9,6 +9,7 @@ pipeline {
             steps {
                 echo 'Cleaning WS stage...'
                 cleanWs()
+                echo "Cleaning workspace completed"
             }
         } 
          
@@ -17,6 +18,7 @@ pipeline {
                 echo "Running build stage"
                 checkout scmGit(branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hswagh9/util-common-service']])
                 bat 'mvn clean install'
+                echo "Build stage completed"
             }
         }
         
@@ -25,6 +27,7 @@ pipeline {
             steps {
                 echo "Running test stage"
                 bat "mvn test"
+                echo "Test stage completed"
             }
         }
         
