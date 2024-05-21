@@ -31,32 +31,32 @@ pipeline {
             }
         }
         
-        stage('Build Docker Image'){
-            steps{
-                script{
-                    bat 'docker build -t hswagh9/util-common-service-docker-image .'
-                }
-            }
-        }
-        
-        stage('Push Docker Image to DockerHub'){
-		    steps{
-		        script{
-		            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-		                bat "docker login -u hswagh9 -p ${dockerhubpwd}"
-		                bat 'docker push hswagh9/util-common-service-docker-image'
-		            }
-				}
-		    }
-		}
-		
-        stage('Deploy to k8s'){
-           steps{
-               script{
-                   kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'k8sconfigpwd')
-                }
-            }
-        }
+ //       stage('Build Docker Image'){
+ //           steps{
+ //               script{
+ //                   bat 'docker build -t hswagh9/util-common-service-docker-image .'
+ //               }
+ //           }
+ //       }
+ //       
+ //       stage('Push Docker Image to DockerHub'){
+//		    steps{
+//		        script{
+//		            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+//		                bat "docker login -u hswagh9 -p ${dockerhubpwd}"
+//		                bat 'docker push hswagh9/util-common-service-docker-image'
+//		            }
+//				}
+//		    }
+//		}
+//		
+ //       stage('Deploy to k8s'){
+ //          steps{
+  //             script{
+  //                 kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'k8sconfigpwd')
+ //               }
+//            }
+ //       }
     }
 }
 
