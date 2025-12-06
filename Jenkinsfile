@@ -15,13 +15,19 @@ pipeline {
         } 
          
         stage('Project Build') {
-            steps {
-                echo "Running build stage"
-                checkout scmGit(branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hswagh9/util-common-service']])
-                bat 'mvn clean install'
-                echo "Build stage completed"
-            }
-        }
+		    steps {
+		        echo "Running build stage"
+		        checkout scmGit(branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hswagh9/util-common-service']])
+		
+		        bat "echo JAVA_HOME=%JAVA_HOME%"
+		        bat "java -version"
+		        bat "mvn -version"
+		
+		        bat 'mvn clean install'
+		        echo "Build stage completed"
+		    }
+		}
+
         
         stage('Project Test') {
             agent any
