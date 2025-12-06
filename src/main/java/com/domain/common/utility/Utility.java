@@ -62,7 +62,7 @@ public class Utility {
 			sdf.setTimeZone(getZone());
 			return sdf.parse(dateStr);
 		} catch (ParseException e) {
-			log.error(e.getMessage());
+//			log.error(e.getMessage());
 		}
 		return null;
 	}
